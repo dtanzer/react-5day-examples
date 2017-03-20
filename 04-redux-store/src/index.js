@@ -1,6 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import { createStore } from 'redux';
+import { reducer } from './Reducer';
+import { Provider } from 'react-redux';
+
+import { AppContainer } from './App';
 import './index.css';
 
 const initialState = {
@@ -11,8 +15,11 @@ const initialState = {
     { firstName: 'Mary', lastName: 'Sims' },
   ]
 };
+const store = createStore(reducer, initialState);
 
 ReactDOM.render(
-  <App />,
+  <Provider store={store}>
+    <AppContainer />
+  </Provider>,
   document.getElementById('root')
 );
